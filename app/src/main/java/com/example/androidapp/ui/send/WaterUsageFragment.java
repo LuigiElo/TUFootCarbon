@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.androidapp.R;
 
-public class SendFragment extends Fragment {
+public class WaterUsageFragment extends Fragment {
 
-    private SendViewModel sendViewModel;
+    private WaterUsageViewModel waterUsageViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        sendViewModel =
-                ViewModelProviders.of(this).get(SendViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_send, container, false);
+        waterUsageViewModel =
+                ViewModelProviders.of(this).get(WaterUsageViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_waterusage, container, false);
         final TextView textView = root.findViewById(R.id.text_send);
-        sendViewModel.getText().observe(this, new Observer<String>() {
+        waterUsageViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

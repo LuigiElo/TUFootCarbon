@@ -1,18 +1,18 @@
 package com.example.androidapp.APIAccess;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsResponse {
-    private boolean resultsTruncated;
+    private boolean resultIsTruncated;
     private List<Item> items;
     private String version;
     private String status;
 
 
-    public boolean getResultsTruncated() {
-        return resultsTruncated;
+    public boolean getResultIsTruncated() {
+        return resultIsTruncated;
     }
+
 
 
 
@@ -37,8 +37,8 @@ public class ItemsResponse {
         return status;
     }
 
-    public void setResultsTruncated(boolean resultsTruncated) {
-        this.resultsTruncated = resultsTruncated;
+    public void setResultIsTruncated(boolean resultIsTruncated) {
+        this.resultIsTruncated = resultIsTruncated;
     }
 
     public void setItems(List<Item> items) {

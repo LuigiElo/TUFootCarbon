@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/text_gallery"
+        android:id="@+id/text_electricity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -29,8 +29,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_gallery"
-        app:layout_constraintVertical_bias="0.217" />
+        app:layout_constraintTop_toTopOf="@+id/text_electricity"
+        app:layout_constraintVertical_bias="0.217"
+        tools:text="@string/electricity_consumption" />
 
     <Spinner
         android:id="@+id/countriesSpinner"

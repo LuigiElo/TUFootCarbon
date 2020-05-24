@@ -6,12 +6,12 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.androidapp.APIAccess.RequestManager;
 
-public class SendViewModel extends ViewModel {
+public class WaterUsageViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
     RequestManager rm = RequestManager.getInstance();
 
-    public SendViewModel() {
+    public WaterUsageViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("Wait...");
         rm.getWaterUsage("bath",3);

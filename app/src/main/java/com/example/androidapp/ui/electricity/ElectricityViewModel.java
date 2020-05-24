@@ -1,4 +1,4 @@
-package com.example.androidapp.ui.gallery;
+package com.example.androidapp.ui.electricity;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -6,20 +6,20 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.androidapp.APIAccess.RequestManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class GalleryViewModel extends ViewModel {
+public class ElectricityViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
     private MutableLiveData<List<String>> countries;
     RequestManager rm = RequestManager.getInstance();;
 
-    public GalleryViewModel() {
+    public ElectricityViewModel() {
         mText = new MutableLiveData<>();
         countries = new MutableLiveData<>();
         mText.setValue("This is gallery fragment");
-         getCountries();
+        getCountries();
+
 
 
     }
@@ -28,8 +28,8 @@ public class GalleryViewModel extends ViewModel {
         return mText;
     }
 
-    public List<String> getCountries() {
-        countries.setValue(rm.getCountriesForElectricityCalculation());
-        return countries.getValue();
+    public MutableLiveData<List<String>> getCountries() {
+        countries = rm.getCountriesForElectricityCalculation();
+        return countries;
     }
 }
