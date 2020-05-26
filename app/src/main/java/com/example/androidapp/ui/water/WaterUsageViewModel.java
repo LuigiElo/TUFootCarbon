@@ -1,4 +1,4 @@
-package com.example.androidapp.ui.send;
+package com.example.androidapp.ui.water;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

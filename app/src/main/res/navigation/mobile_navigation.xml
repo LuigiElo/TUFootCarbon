@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/nav_water_usage"
-        android:name="com.example.androidapp.ui.send.WaterUsageFragment"
+        android:name="com.example.androidapp.ui.water.WaterUsageFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_waterusage" />
 </navigation>

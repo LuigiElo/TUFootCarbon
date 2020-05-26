@@ -27,13 +27,13 @@ import android.widget.TextView;
 public class DrawerActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private TextView userText;
-    private TextView emailText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -57,21 +57,7 @@ public class DrawerActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        userText = findViewById(R.id.drawer_user);
-        try {
-            if(user.getDisplayName() != null){
-                userText.setText(user.getDisplayName());
-            }
-            emailText = findViewById(R.id.drawer_email);
-            if(user.getEmail() != null){
-                userText.setText(user.getEmail());
-            }
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
 
 
 
@@ -82,6 +68,29 @@ public class DrawerActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.drawer, menu);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        TextView userText = (TextView) findViewById(R.id.drawer_user);
+
+        try {
+            if(user.getDisplayName() != null){
+                userText.setText(user.getDisplayName());
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+
+        TextView emailText =(TextView)  findViewById(R.id.drawer_email);
+
+        try {
+            if(user.getEmail() != null){
+                emailText.setText(user.getEmail());
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
         return true;
     }

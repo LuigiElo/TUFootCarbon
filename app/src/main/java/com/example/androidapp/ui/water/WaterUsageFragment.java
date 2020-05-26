@@ -1,4 +1,4 @@
-package com.example.androidapp.ui.send;
+package com.example.androidapp.ui.water;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
