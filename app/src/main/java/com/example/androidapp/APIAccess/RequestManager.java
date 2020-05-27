@@ -1,6 +1,5 @@
 package com.example.androidapp.APIAccess;
 
-import android.content.ClipData;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
@@ -28,6 +27,7 @@ public class RequestManager {
 
         output = new MutableLiveData<>();
         itemsResponse = new MutableLiveData<>();
+        itemsLive = new MutableLiveData<>();
         carbonAPI = ServiceGenerator.getCarbonAPI();
         user =  ServiceGenerator.getAuthHeader("eloluigi","luigi09");
     }
@@ -95,26 +95,12 @@ public class RequestManager {
             }
         });
 
-        //getting the 100 elements of the list
-        if(resultStart == 0) {
-            itemsLive.setValue(itemsResponse.getValue().getItemsLabels()); //and here I get the null pointer, the response is null
-        } else {
-            //getting the rest one by one
-            for (int i = 0 ;i <itemsResponse.getValue().getItems().size();i++){
-                itemsLive.getValue().add(itemsResponse.getValue().getItems().get(i).getLabel());
-            }
-        }
-
-        //in case the list has more than 100 , another request is needed
-        if(itemsResponse.getValue().getResultIsTruncated()){
-            resultStart = resultStart + 100;
-            getCountriesForElectricityCalculation();
-        }else {
-            resultStart = 0;
-        }
-
+        System.out.println(itemsResponse.getValue().getItemsLabels().toString());
         return itemsLive;
     }
+
+
+
 
 
     public MutableLiveData<String> getOutput() {
@@ -147,7 +133,7 @@ public class RequestManager {
             }
         }
 
-        if(itemsResponse.getValue().getResultIsTruncated()){
+        if(itemsResponse.getValue().getResultsTruncated()){
             resultStart = resultStart + 100;
             getAirportByCountry();
         }else {
@@ -176,15 +162,14 @@ public class RequestManager {
         return output;
     }
 
-    public List<String> getWaterUsageTypes(){
+    public MutableLiveData<List<String>> getWaterUsageTypes(){
         Call<ItemsResponse> call = carbonAPI.getWaterUsageTypes(user);
         call.enqueue(new Callback<ItemsResponse>() {
             @Override
             public void onResponse(Call<ItemsResponse> call, Response<ItemsResponse> response) {
                 if (response.code() == 200) {
                     itemsResponse.setValue(response.body());
-                    Log.d("Retrift111111111111111",response.body().getStatus());
-
+                    itemsLive.setValue(itemsResponse.getValue().getItemsLabels());
                 }
             }
             @Override
@@ -193,12 +178,12 @@ public class RequestManager {
 
             }
         });
+        return itemsLive;
+    }
 
 
-        List<String> typeList = itemsResponse.getValue().getItemsLabels();
-
-
-        return  typeList;
+    public MutableLiveData<List<String>> getItemsLive() {
+        return itemsLive;
     }
 
 }

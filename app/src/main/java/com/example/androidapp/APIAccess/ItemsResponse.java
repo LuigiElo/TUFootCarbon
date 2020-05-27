@@ -3,14 +3,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsResponse {
-    private boolean resultIsTruncated;
+    private boolean resultsTruncated;
     private List<Item> items;
     private String version;
     private String status;
 
 
-    public boolean getResultIsTruncated() {
-        return resultIsTruncated;
+    public boolean getResultsTruncated() {
+        return resultsTruncated;
     }
 
 
@@ -37,8 +37,8 @@ public class ItemsResponse {
         return status;
     }
 
-    public void setResultIsTruncated(boolean resultIsTruncated) {
-        this.resultIsTruncated = resultIsTruncated;
+    public void setResultsTruncated(boolean resultsTruncated) {
+        this.resultsTruncated = resultsTruncated;
     }
 
     public void setItems(List<Item> items) {

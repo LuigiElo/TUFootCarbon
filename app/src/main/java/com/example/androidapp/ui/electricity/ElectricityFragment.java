@@ -39,20 +39,6 @@ public class ElectricityFragment extends Fragment {
         });
 
         list = new MutableLiveData<>();
-        Spinner spinner = root.findViewById(R.id.countriesSpinner);
-
-        electricityViewModel.getCountries().observe(this, new Observer<List<String>>() {
-            @Override
-            public void onChanged(List<String> strings) {
-                list.setValue(strings);
-
-            }
-        });
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (this.getContext(), android.R.layout.simple_list_item_1, list.getValue());
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
 
 
 

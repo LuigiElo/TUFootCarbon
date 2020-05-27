@@ -16,7 +16,7 @@ public class ElectricityViewModel extends ViewModel {
 
     public ElectricityViewModel() {
         mText = new MutableLiveData<>();
-        countries = new MutableLiveData<>();
+        countries = new MutableLiveData<List<String>>();
         mText.setValue("This is gallery fragment");
         getCountries();
 
