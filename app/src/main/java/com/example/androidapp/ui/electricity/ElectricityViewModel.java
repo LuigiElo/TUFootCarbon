@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.androidapp.APIAccess.RequestManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ElectricityViewModel extends ViewModel {
@@ -17,19 +18,27 @@ public class ElectricityViewModel extends ViewModel {
     public ElectricityViewModel() {
         mText = new MutableLiveData<>();
         countries = new MutableLiveData<List<String>>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("bruh");
+        rm.getCountriesForElectricityCalculation();
         getCountries();
 
 
 
+
+
     }
 
-    public LiveData<String> getText() {
+    public void getElectricityCalculation(String country,int amount){
+        rm.getElectricityCalculation(country,amount);
+    }
+
+    public LiveData<String> getTextElectricity() {
+        mText = rm.getOutput();
         return mText;
     }
 
     public MutableLiveData<List<String>> getCountries() {
-        countries = rm.getCountriesForElectricityCalculation();
+        countries = rm.getItemsLive();
         return countries;
     }
 }

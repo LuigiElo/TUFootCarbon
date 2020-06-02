@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -28,6 +29,7 @@ public class RequestManager {
         output = new MutableLiveData<>();
         itemsResponse = new MutableLiveData<>();
         itemsLive = new MutableLiveData<>();
+        items= new ArrayList<String>();
         carbonAPI = ServiceGenerator.getCarbonAPI();
         user =  ServiceGenerator.getAuthHeader("eloluigi","luigi09");
     }
@@ -84,8 +86,22 @@ public class RequestManager {
             public void onResponse(Call<ItemsResponse> call, Response<ItemsResponse> response) {
                 if (response.code() == 200) {
                     itemsResponse.setValue(response.body());
-                    Log.d("Retrift111111111111111",response.body().getStatus());
+                    if(resultStart == 0) {
+                        items = itemsResponse.getValue().getItemsLabels();
+                    } else {
+                        for (int i = 0 ;i <itemsResponse.getValue().getItems().size();i++){
+                            items.add(itemsResponse.getValue().getItems().get(i).getLabel());
+                        }
+                    }
 
+                    if(itemsResponse.getValue().getResultsTruncated()){
+                        resultStart = resultStart + 100;
+                        getCountriesForElectricityCalculation();
+                    }else {
+                        resultStart = 0;
+                    }
+
+                    itemsLive.setValue(items);
                 }
             }
             @Override
@@ -95,7 +111,6 @@ public class RequestManager {
             }
         });
 
-        System.out.println(itemsResponse.getValue().getItemsLabels().toString());
         return itemsLive;
     }
 
@@ -107,7 +122,7 @@ public class RequestManager {
         return output;
     }
 
-    public List<String> getAirportByCountry(){
+    public MutableLiveData<List<String>> getAirportByCountry(){
         Call<ItemsResponse> call = carbonAPI.getAirportsByCode(user,resultStart,RESULT_LIMIT);
         call.enqueue(new Callback<ItemsResponse>() {
             @Override
@@ -115,6 +130,21 @@ public class RequestManager {
                 if (response.code() == 200) {
                     itemsResponse.setValue(response.body());
                     Log.d("Retrift111111111111111",response.body().getStatus());
+                    if(resultStart == 0) {
+                        items = itemsResponse.getValue().getItemsLabels();
+                    } else {
+                        for (int i = 0 ;i <itemsResponse.getValue().getItems().size();i++){
+                            items.add(itemsResponse.getValue().getItems().get(i).getLabel());
+                        }
+                    }
+                    if(itemsResponse.getValue().getResultsTruncated()){
+                        resultStart = resultStart + 100;
+                        getAirportByCountry();
+                    }else {
+                        resultStart = 0;
+                    }
+                    itemsLive.setValue(items);
+
 
                 }
             }
@@ -124,23 +154,7 @@ public class RequestManager {
 
             }
         });
-
-        if(resultStart == 0) {
-            items = itemsResponse.getValue().getItemsLabels();
-        } else {
-            for (int i = 0 ;i <itemsResponse.getValue().getItems().size();i++){
-                items.add(itemsResponse.getValue().getItems().get(i).getLabel());
-            }
-        }
-
-        if(itemsResponse.getValue().getResultsTruncated()){
-            resultStart = resultStart + 100;
-            getAirportByCountry();
-        }else {
-            resultStart = 0;
-        }
-
-        return items;
+        return itemsLive;
     }
 
     public MutableLiveData<String> getFlightCalculation(String iataCode1, String iataCode2,boolean isReturn,String passengerClass,int journeys) {

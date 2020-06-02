@@ -33,4 +33,7 @@
 
     <string name="electricity_consumption">Electricity Consumption</string>
     <string name="calculate_button">Calculate</string>
+    <string name="electricity_hint">Monthly Consumption</string>
+
+    <string name="water_hint">Times per Day /Hours per Day for taps</string>
 </resources>
