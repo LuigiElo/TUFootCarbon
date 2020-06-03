@@ -59,4 +59,8 @@ public class WaterUsageViewModel extends AndroidViewModel {
     public void insert(CarbonEmissions carbonEmissions){
         cr.insert(carbonEmissions);
     }
+
+    public void deleteAll() {
+        cr.deleteAllNotes();
+    }
 }

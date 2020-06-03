@@ -13,6 +13,7 @@ import com.example.androidapp.Database.CarbonEmissions;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
@@ -23,7 +24,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
     @Override
     public CardHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.card_item,parent,false);
+
+
 
         return new CardHolder(itemView);
     }
@@ -32,11 +36,21 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
     public void onBindViewHolder(@NonNull CardHolder holder, int position) {
         CarbonEmissions current = ce.get(position);
         try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            Date dateDate = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy").parse(current.getDate());
+            String date = formatter.format(dateDate);
+            System.out.println(holder.dateTextView.getText());
+            System.out.println(current.getSum());
+            holder.dateTextView.setText(date);
             holder.valueTextView.setText(current.getSum() + "CO2 kg/year");
-            holder.dateTextView.setText(current.getDate());
+
+
         }catch(Exception e) {
             e.printStackTrace();
+
         }
+
+
     }
 
     @Override
@@ -56,10 +70,15 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
 
         public CardHolder(View itemView){
             super(itemView);
-            valueTextView = itemView.findViewById(R.id.valuesView);
-            dateTextView = itemView.findViewById(R.id.date_textView);
+            valueTextView = (TextView) itemView.findViewById(R.id.values_textview);
+            dateTextView = (TextView)  itemView.findViewById(R.id.date_textView);
+            delete = itemView.findViewById(R.id.delete);
+
+
 
         }
+
+
 
     }
 

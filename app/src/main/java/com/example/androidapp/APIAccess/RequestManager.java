@@ -47,7 +47,7 @@ public class RequestManager {
             @Override
             public void onResponse(Call<CalculationResponse> call, Response<CalculationResponse> response) {
                 if (response.code() == 200) {
-                    output.setValue(response.body().getOutput().getAmounts().get(0).getValue()+response.body().getOutput().getAmounts().get(0).getType()+response.body().getOutput().getAmounts().get(0).getUnit());
+                    output.setValue(response.body().getOutput().getAmounts().get(0).getValue()+"");
                 }
             }
             @Override
@@ -66,7 +66,7 @@ public class RequestManager {
             @Override
             public void onResponse(Call<CalculationResponse> call, Response<CalculationResponse> response) {
                 if (response.code() == 200) {
-                    output.setValue(response.body().getOutput().getAmounts().get(0).getValue()+response.body().getOutput().getAmounts().get(0).getType()+response.body().getOutput().getAmounts().get(0).getUnit());
+                    output.setValue(response.body().getOutput().getAmounts().get(0).getValue()+"");
                 }
             }
             @Override

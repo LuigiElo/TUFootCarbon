@@ -14,20 +14,21 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.416" />
+        app:layout_constraintVertical_bias="0.977" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/valuesView"
-        android:layout_width="375dp"
-        android:layout_height="364dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="371dp"
+        android:layout_height="341dp"
+        android:layout_marginBottom="45dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09"
+        app:layout_constraintVertical_bias="0.914"
         tools:listitem="@layout/card_item" />
 
     <EditText

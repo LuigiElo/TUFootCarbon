@@ -47,10 +47,12 @@ public class WaterUsageFragment extends Fragment {
         final Button button = root.findViewById(R.id.button);
 
 
+        waterUsageViewModel.deleteAll();
+
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         recyclerView.setHasFixedSize(true);
 
-        CardAdapter cardAdapter = new CardAdapter();
+        final CardAdapter cardAdapter = new CardAdapter();
         recyclerView.setAdapter(cardAdapter);
 
 
@@ -60,8 +62,7 @@ public class WaterUsageFragment extends Fragment {
                 try{
                     int times = Integer.parseInt(waterText.getText().toString());
                     waterUsageViewModel.getWaterUsage(spinner.getSelectedItem().toString(),times);
-                    String text = waterUsageViewModel.getText().getValue();
-                    waterUsageViewModel.insert(new CarbonEmissions(FirebaseAuth.getInstance().getCurrentUser().getEmail(),5,"water", Calendar.getInstance().getTime().toString()));
+                    waterUsageViewModel.getText();
 
                 }
                 catch(Exception e){
@@ -76,6 +77,8 @@ public class WaterUsageFragment extends Fragment {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
+                waterUsageViewModel.insert(new CarbonEmissions(FirebaseAuth.getInstance().getCurrentUser().getEmail(),Float.parseFloat(s), Calendar.getInstance().getTime().toString(),"water"));
+
             }
         });
 
