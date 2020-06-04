@@ -14,6 +14,7 @@ import retrofit2.Response;
 public class RequestManager {
 
 
+    public final static int CARBON_EMISSION_GOAL = 2000;
     private static RequestManager instance;
     private MutableLiveData<String> output;
     private MutableLiveData<ItemsResponse> itemsResponse;

@@ -4,12 +4,15 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.androidapp.APIAccess.RequestManager;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class FlightsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
+    RequestManager rm = RequestManager.getInstance();
 
     public FlightsViewModel() {
         mText = new MutableLiveData<>();
@@ -20,11 +23,12 @@ public class FlightsViewModel extends ViewModel {
         return mText;
     }
 
-    public MutableLiveData<List<String>> getFlighClasses() {
+    public MutableLiveData<List<String>> getFlightClasses() {
         List<String> list = Arrays.asList(new String[]{"average", "economy", "premium economy", "business", "first"});
         MutableLiveData<List<String>> returnValue = new MutableLiveData<>();
         returnValue.setValue(list);
         return returnValue;
-
     }
+
+
  }

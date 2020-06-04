@@ -53,7 +53,7 @@ public class WaterUsageViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<CarbonEmissions>> getAll() {
-       return cr.getAllEmissions();
+       return cr.getAllEmissionsByType("water");
     }
 
     public void insert(CarbonEmissions carbonEmissions){

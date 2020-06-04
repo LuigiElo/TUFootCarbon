@@ -28,7 +28,7 @@ public class FlightsFragment extends Fragment {
         final TextView textView = root.findViewById(R.id.text_slideshow);
 
         Spinner classSpinner = root.findViewById(R.id.classSpinner);
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_spinner_item, flightsViewModel.getFlighClasses().getValue());
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_spinner_item, flightsViewModel.getFlightClasses().getValue());
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         classSpinner.setAdapter(spinnerArrayAdapter);
 

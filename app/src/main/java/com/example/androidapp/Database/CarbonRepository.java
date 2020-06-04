@@ -12,11 +12,13 @@ public class CarbonRepository {
     private CarbonDao carbonDao;
     private static CarbonRepository instance;
     private LiveData<List<CarbonEmissions >> allEmissions;
+    private LiveData<List<CarbonEmissions >> typeEmissions;
 
     private CarbonRepository(Application application){
-        CarbonDatabase database = CarbonDatabase.getInstance(application);
+        final CarbonDatabase database = CarbonDatabase.getInstance(application);
         carbonDao = database.noteDao();
-        allEmissions = carbonDao.getAllEmissions();    }
+        allEmissions = carbonDao.getAllEmissions();
+    }
 
     public static synchronized CarbonRepository getInstance(Application application){
         if(instance == null)
@@ -27,6 +29,11 @@ public class CarbonRepository {
 
     public LiveData<List<CarbonEmissions>> getAllEmissions(){
         return allEmissions;
+    }
+
+    public LiveData<List<CarbonEmissions>> getAllEmissionsByType(String type){
+        typeEmissions = carbonDao.getAllEmissionsByType(type);
+        return typeEmissions;
     }
 
     public void insert(CarbonEmissions carbonEmissions) {

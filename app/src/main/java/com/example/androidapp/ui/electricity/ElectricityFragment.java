@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -16,9 +17,16 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.androidapp.CardAdapter;
+import com.example.androidapp.Database.CarbonEmissions;
 import com.example.androidapp.R;
+import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class ElectricityFragment extends Fragment {
@@ -38,11 +46,25 @@ public class ElectricityFragment extends Fragment {
         final Button button3 = root.findViewById(R.id.button3);
         final EditText editText = root.findViewById(R.id.editText);
 
+        //RecyclerView Setup
+        final RecyclerView recyclerView = root.findViewById(R.id.electricityValuesView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+        recyclerView.setHasFixedSize(true);
+        final CardAdapter cardAdapter = new CardAdapter();
+        recyclerView.setAdapter(cardAdapter);
+
 
         electricityViewModel.getTextElectricity().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textViewElectricity.setText(s);
+                try {
+                    textViewElectricity.setText(s);
+                    electricityViewModel.insert(new CarbonEmissions(FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Float.parseFloat(s), Calendar.getInstance().getTime().toString(), "electricity", countriesSpinner.getSelectedItem().toString()));
+                    editText.getText().clear();
+                }catch(Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(root.getContext(),"error ocurred",Toast.LENGTH_SHORT).show();
+                }
             }
 
         });
@@ -63,6 +85,13 @@ public class ElectricityFragment extends Fragment {
             }
         });
 
+        electricityViewModel.getAll().observe(this, new Observer<List<CarbonEmissions>>() {
+            @Override
+            public void onChanged(List<CarbonEmissions> carbonEmissions) {
+                cardAdapter.setCards(carbonEmissions);
+            }
+        });
+
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +108,22 @@ public class ElectricityFragment extends Fragment {
                 }
             }
         });
+
+
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                electricityViewModel.delete(cardAdapter.getCarbonEmissionAt(viewHolder.getAdapterPosition()));
+                Toast.makeText(root.getContext(), "Emission deleted", Toast.LENGTH_SHORT).show();
+            }
+        }).attachToRecyclerView(recyclerView);
 
 
 
