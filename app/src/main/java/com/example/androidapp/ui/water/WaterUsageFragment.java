@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,14 +25,11 @@ import com.example.androidapp.CardAdapter;
 import com.example.androidapp.Database.CarbonEmissions;
 import com.example.androidapp.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-public class WaterUsageFragment extends Fragment {
+public class WaterUsageFragment extends Fragment{
 
     private WaterUsageViewModel waterUsageViewModel;
     private MutableLiveData<List<String>> list = new MutableLiveData<>();
@@ -47,7 +46,6 @@ public class WaterUsageFragment extends Fragment {
         final Button button = root.findViewById(R.id.button);
 
 
-        waterUsageViewModel.deleteAll();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         recyclerView.setHasFixedSize(true);
@@ -67,7 +65,7 @@ public class WaterUsageFragment extends Fragment {
                 }
                 catch(Exception e){
                     e.printStackTrace();
-                    textView.setText("Input all the values");
+                    Toast.makeText(root.getContext(),"Input values",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -76,9 +74,14 @@ public class WaterUsageFragment extends Fragment {
         waterUsageViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
-                waterUsageViewModel.insert(new CarbonEmissions(FirebaseAuth.getInstance().getCurrentUser().getEmail(),Float.parseFloat(s), Calendar.getInstance().getTime().toString(),"water"));
-
+                try {
+                    textView.setText(s);
+                    waterUsageViewModel.insert(new CarbonEmissions(FirebaseAuth.getInstance().getCurrentUser().getEmail(), Float.parseFloat(s), Calendar.getInstance().getTime().toString(), "water", spinner.getSelectedItem().toString()));
+                    waterText.getText().clear();
+                }catch(Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(root.getContext(),"error ocurred",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -103,6 +106,23 @@ public class WaterUsageFragment extends Fragment {
 
             }
         });
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                waterUsageViewModel.delete(cardAdapter.getCarbonEmissionAt(viewHolder.getAdapterPosition()));
+                Toast.makeText(root.getContext(), "Emission deleted", Toast.LENGTH_SHORT).show();
+            }
+        }).attachToRecyclerView(recyclerView);
+
         return root;
     }
+
+
 }

@@ -43,13 +43,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
             System.out.println(current.getSum());
             holder.dateTextView.setText(date);
             holder.valueTextView.setText(current.getSum() + "CO2 kg/year");
+            holder.descriptionTextView.setText(current.getDescription());
 
 
         }catch(Exception e) {
             e.printStackTrace();
 
         }
-
 
     }
 
@@ -63,16 +63,22 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
         notifyDataSetChanged();
     }
 
+    public CarbonEmissions getCarbonEmissionAt(int position){
+        return ce.get(position);
+    }
+
     class CardHolder extends RecyclerView.ViewHolder{
         private TextView valueTextView;
         private TextView dateTextView;
-        private TextView delete;
+        private TextView descriptionTextView;
+
 
         public CardHolder(View itemView){
             super(itemView);
             valueTextView = (TextView) itemView.findViewById(R.id.values_textview);
             dateTextView = (TextView)  itemView.findViewById(R.id.date_textView);
-            delete = itemView.findViewById(R.id.delete);
+            descriptionTextView = (TextView) itemView.findViewById(R.id.description_textView);
+
 
 
 
@@ -80,6 +86,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
 
 
 
+    }
+
+    public interface OnDeleteListener{
+        void onDeleteClick(int position);
     }
 
 

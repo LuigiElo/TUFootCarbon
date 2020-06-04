@@ -4,10 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 
 @Entity(tableName = "carbon_emissions")
 public class CarbonEmissions {
@@ -21,14 +17,20 @@ public class CarbonEmissions {
     private float sum;
     @ColumnInfo(name = "type")
     private String type;
+
+    @ColumnInfo (name ="description")
+    private String description;
+
+    //having it type date was creating some problems
     @ColumnInfo(name = "date")
     private String date;
 
-    public CarbonEmissions(String user, float sum, String date,String type) {
+    public CarbonEmissions(String user, float sum, String date, String type, String description) {
         this.user = user;
         this.sum = sum;
         this.date = date;
         this.type = type;
+        this.description = description;
     }
 
 
@@ -70,5 +72,13 @@ public class CarbonEmissions {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
