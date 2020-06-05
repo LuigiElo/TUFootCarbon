@@ -19,6 +19,7 @@ public class RequestManager {
     private MutableLiveData<String> output;
     private MutableLiveData<ItemsResponse> itemsResponse;
     private MutableLiveData<List<String>> itemsLive;
+    private MutableLiveData<List<String>> itemsLiveFlights;
     private List<String> items;
     CarbonAPI carbonAPI;
     String user;
@@ -30,6 +31,7 @@ public class RequestManager {
         output = new MutableLiveData<>();
         itemsResponse = new MutableLiveData<>();
         itemsLive = new MutableLiveData<>();
+        itemsLiveFlights = new MutableLiveData<>();
         items= new ArrayList<String>();
         carbonAPI = ServiceGenerator.getCarbonAPI();
         user =  ServiceGenerator.getAuthHeader("eloluigi","luigi09");
@@ -144,7 +146,7 @@ public class RequestManager {
                     }else {
                         resultStart = 0;
                     }
-                    itemsLive.setValue(items);
+                    itemsLiveFlights.setValue(items);
 
 
                 }
@@ -155,7 +157,7 @@ public class RequestManager {
 
             }
         });
-        return itemsLive;
+        return itemsLiveFlights;
     }
 
     public MutableLiveData<String> getFlightCalculation(String iataCode1, String iataCode2,boolean isReturn,String passengerClass,int journeys) {
@@ -165,7 +167,7 @@ public class RequestManager {
             @Override
             public void onResponse(Call<CalculationResponse> call, Response<CalculationResponse> response) {
                 if (response.code() == 200) {
-                    output.setValue(response.body().getOutput().getAmounts().get(1).getValue()+response.body().getOutput().getAmounts().get(0).getType()+response.body().getOutput().getAmounts().get(0).getUnit());
+                    output.setValue(response.body().getOutput().getAmounts().get(1).getValue()+"");
                 }
             }
             @Override
@@ -200,5 +202,10 @@ public class RequestManager {
     public MutableLiveData<List<String>> getItemsLive() {
         return itemsLive;
     }
+
+    public MutableLiveData<List<String>> getItemsLiveFlights() {
+        return itemsLiveFlights;
+    }
+
 
 }

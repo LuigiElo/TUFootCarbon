@@ -28,6 +28,9 @@ public interface CarbonDao {
     @Query("SELECT * FROM carbon_emissions")
     LiveData<List<CarbonEmissions>> getAllEmissions();
 
+    @Query("SELECT SUM(value) FROM carbon_emissions")
+    LiveData<Float> getEmissionTotal();
+
     @Query("SELECT * FROM carbon_emissions WHERE type LIKE :type")
     LiveData<List<CarbonEmissions>> getAllEmissionsByType(String type);
 

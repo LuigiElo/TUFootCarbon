@@ -31,6 +31,12 @@ public class CarbonRepository {
         return allEmissions;
     }
 
+    public LiveData<Float> getEmissionTotal() {
+        LiveData<Float> f = carbonDao.getEmissionTotal();
+        System.out.println(f);
+        return  f;
+    }
+
     public LiveData<List<CarbonEmissions>> getAllEmissionsByType(String type){
         typeEmissions = carbonDao.getAllEmissionsByType(type);
         return typeEmissions;
