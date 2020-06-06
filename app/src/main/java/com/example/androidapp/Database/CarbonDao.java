@@ -1,5 +1,6 @@
 package com.example.androidapp.Database;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -25,13 +26,17 @@ public interface CarbonDao {
     void deleteAll();
 
 
-    @Query("SELECT * FROM carbon_emissions")
+    @Query("SELECT * FROM carbon_emissions ORDER BY id DESC")
     LiveData<List<CarbonEmissions>> getAllEmissions();
 
-    @Query("SELECT SUM(value) FROM carbon_emissions")
+
+    //Does not work
+    @Query("SELECT sum(value) FROM carbon_emissions")
     LiveData<Float> getEmissionTotal();
 
-    @Query("SELECT * FROM carbon_emissions WHERE type LIKE :type")
+
+
+    @Query("SELECT * FROM carbon_emissions WHERE type LIKE :type ORDER BY id DESC")
     LiveData<List<CarbonEmissions>> getAllEmissionsByType(String type);
 
 }

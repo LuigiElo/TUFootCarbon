@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class CarbonRepository {
     private static CarbonRepository instance;
     private LiveData<List<CarbonEmissions >> allEmissions;
     private LiveData<List<CarbonEmissions >> typeEmissions;
+    private LiveData<Float> total;
 
     private CarbonRepository(Application application){
         final CarbonDatabase database = CarbonDatabase.getInstance(application);
@@ -28,13 +30,14 @@ public class CarbonRepository {
     }
 
     public LiveData<List<CarbonEmissions>> getAllEmissions(){
+
         return allEmissions;
     }
 
-    public LiveData<Float> getEmissionTotal() {
-        LiveData<Float> f = carbonDao.getEmissionTotal();
-        System.out.println(f);
-        return  f;
+
+    public LiveData<Float> getEmissionTotal(){
+        total = carbonDao.getEmissionTotal();
+        return total;
     }
 
     public LiveData<List<CarbonEmissions>> getAllEmissionsByType(String type){
