@@ -16,6 +16,7 @@ import java.util.List;
 
 public class FlightsViewModel extends AndroidViewModel {
 
+    public final static String EMISSION_TYPE_FLIGHTS = "flights";
     private MutableLiveData<String> mText;
     RequestManager rm = RequestManager.getInstance();
     CarbonRepository cr;
@@ -39,10 +40,8 @@ public class FlightsViewModel extends AndroidViewModel {
     }
 
     public MutableLiveData<List<String>> getFlightClasses() {
-        List<String> list = Arrays.asList(new String[]{"average", "economy", "premium economy", "business", "first"});
-        MutableLiveData<List<String>> returnValue = new MutableLiveData<>();
-        returnValue.setValue(list);
-        return returnValue;
+
+        return  rm.getFlightClasses();
     }
 
     public void getFLightsCalculation(String iataCode1,String iataCode2,boolean isReturn,String passengerClass,int jouneys){
@@ -58,7 +57,7 @@ public class FlightsViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<CarbonEmissions>> getAll() {
-        return cr.getAllEmissionsByType("flights");
+        return cr.getAllEmissionsByType(EMISSION_TYPE_FLIGHTS);
     }
 
     public void insert(CarbonEmissions carbonEmissions){

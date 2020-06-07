@@ -59,7 +59,7 @@ public class ElectricityFragment extends Fragment {
             public void onChanged(@Nullable String s) {
                 try {
                     textViewElectricity.setText(s);
-                    electricityViewModel.insert(new CarbonEmissions(FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Float.parseFloat(s), Calendar.getInstance().getTime().toString(), "electricity", countriesSpinner.getSelectedItem().toString()));
+                    electricityViewModel.insert(new CarbonEmissions(FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Float.parseFloat(s), Calendar.getInstance().getTime().toString(), electricityViewModel.EMISSION_TYPE_ELECTRICITY, countriesSpinner.getSelectedItem().toString()));
                     editText.getText().clear();
                 }catch(Exception e){
                     e.printStackTrace();

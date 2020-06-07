@@ -16,6 +16,7 @@ import java.util.List;
 
 public class WaterUsageViewModel extends AndroidViewModel {
 
+    public final static String EMISSION_TYPE_WATER = "water";
     private MutableLiveData<String> mText;
     private MutableLiveData<List<String>> spinnerData;
     RequestManager rm = RequestManager.getInstance();
@@ -27,13 +28,7 @@ public class WaterUsageViewModel extends AndroidViewModel {
         cr = CarbonRepository.getInstance(app);
         mText = new MutableLiveData<>();
         spinnerData = new MutableLiveData<>();
-        mText.setValue("Wait...");
         rm.getWaterUsageTypes();
-
-
-
-
-
     }
 
     public void getWaterUsage(String type,int times){
@@ -53,7 +48,7 @@ public class WaterUsageViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<CarbonEmissions>> getAll() {
-       return cr.getAllEmissionsByType("water");
+       return cr.getAllEmissionsByType(EMISSION_TYPE_WATER);
     }
 
     public void insert(CarbonEmissions carbonEmissions){

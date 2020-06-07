@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,6 +26,7 @@ public class RequestManager {
     String user;
     private int resultStart = 0;
     public static final int RESULT_LIMIT = 100;
+
 
     private  RequestManager() {
 
@@ -132,8 +134,8 @@ public class RequestManager {
             public void onResponse(Call<ItemsResponse> call, Response<ItemsResponse> response) {
                 if (response.code() == 200) {
                     itemsResponse.setValue(response.body());
-                    Log.d("Retrift111111111111111",response.body().getStatus());
                     if(resultStart == 0) {
+                        System.out.println(response.body().getItems().get(0).getLabel());
                         items = itemsResponse.getValue().getItemsLabels();
                     } else {
                         for (int i = 0 ;i <itemsResponse.getValue().getItems().size();i++){
@@ -191,7 +193,7 @@ public class RequestManager {
             }
             @Override
             public void onFailure(Call<ItemsResponse> call, Throwable t) {
-                Log.i("Retrofit", "Something went wrong getting the countries");
+                Log.i("Retrofit", "Something went wrong getting the water types");
 
             }
         });
@@ -208,4 +210,10 @@ public class RequestManager {
     }
 
 
+    public MutableLiveData<List<String>> getFlightClasses() {
+        List<String> list = Arrays.asList(new String[]{"average", "economy", "premium economy", "business", "first"});
+        MutableLiveData<List<String>> values = new MutableLiveData<>();
+        values.setValue(list);
+        return values;
+    }
 }

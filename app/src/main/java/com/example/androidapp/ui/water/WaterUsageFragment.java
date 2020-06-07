@@ -76,7 +76,7 @@ public class WaterUsageFragment extends Fragment{
             public void onChanged(@Nullable String s) {
                 try {
                     textView.setText(s);
-                    waterUsageViewModel.insert(new CarbonEmissions(FirebaseAuth.getInstance().getCurrentUser().getEmail(), Float.parseFloat(s), Calendar.getInstance().getTime().toString(), "water", spinner.getSelectedItem().toString()));
+                    waterUsageViewModel.insert(new CarbonEmissions(FirebaseAuth.getInstance().getCurrentUser().getEmail(), Float.parseFloat(s), Calendar.getInstance().getTime().toString(), waterUsageViewModel.EMISSION_TYPE_WATER, spinner.getSelectedItem().toString()));
                     waterText.getText().clear();
                 }catch(Exception e){
                     e.printStackTrace();

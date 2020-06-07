@@ -85,7 +85,7 @@ public class FlightsFragment extends Fragment {
             public void onChanged(@Nullable String s) {
                 if(!departureSpinner.getSelectedItem().toString().equals(arrivalSpinner.getSelectedItem().toString())) {
                     textView.setText(s);
-                    flightsViewModel.insert(new CarbonEmissions(FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Float.parseFloat(s), Calendar.getInstance().getTime().toString(), "flights", departureSpinner.getSelectedItem().toString() + " - " + arrivalSpinner.getSelectedItem().toString()));
+                    flightsViewModel.insert(new CarbonEmissions(FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Float.parseFloat(s), Calendar.getInstance().getTime().toString(),flightsViewModel.EMISSION_TYPE_FLIGHTS , departureSpinner.getSelectedItem().toString() + " - " + arrivalSpinner.getSelectedItem().toString()));
                 }
                 journeys.getText().clear();
             }

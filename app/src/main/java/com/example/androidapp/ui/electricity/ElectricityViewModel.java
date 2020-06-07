@@ -16,6 +16,7 @@ import java.util.List;
 
 public class ElectricityViewModel extends AndroidViewModel {
 
+    public final static String EMISSION_TYPE_ELECTRICITY = "electricity";
     private MutableLiveData<String> mText;
     private MutableLiveData<List<String>> countries;
     RequestManager rm = RequestManager.getInstance();;
@@ -26,7 +27,6 @@ public class ElectricityViewModel extends AndroidViewModel {
         cr = CarbonRepository.getInstance(app);
         mText = new MutableLiveData<>();
         countries = new MutableLiveData<List<String>>();
-        mText.setValue("bruh");
         rm.getCountriesForElectricityCalculation();
     }
 
@@ -46,7 +46,7 @@ public class ElectricityViewModel extends AndroidViewModel {
 
 
     public LiveData<List<CarbonEmissions>> getAll() {
-        return cr.getAllEmissionsByType("electricity");
+        return cr.getAllEmissionsByType(EMISSION_TYPE_ELECTRICITY);
     }
 
     public void insert(CarbonEmissions carbonEmissions){
