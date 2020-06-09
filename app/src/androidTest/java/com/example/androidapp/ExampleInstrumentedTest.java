@@ -64,6 +64,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void testFlightCalculation() throws InterruptedException {
 
+        sleep(1000);
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
                 .perform(DrawerActions.open());
@@ -87,7 +88,9 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.departureSpinner)).check(matches(withSpinnerText(containsString(iataCode1))));
 
         onView(withId(R.id.arrivalSpinner)).perform(click());
+        sleep(1000);
         onData(allOf(is(instanceOf(String.class)), is(iataCode2))).perform(click());
+        sleep(1000);
         onView(withId(R.id.arrivalSpinner)).check(matches(withSpinnerText(containsString(iataCode2))));
 
         onView(withId(R.id.classSpinner)).perform(click());
@@ -109,6 +112,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void testElectricityCalculation() throws InterruptedException {
 
+        sleep(1000);
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
                 .perform(DrawerActions.open());
@@ -143,6 +147,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void testWaterCalculation() throws InterruptedException {
 
+        sleep(1000);
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
                 .perform(DrawerActions.open());

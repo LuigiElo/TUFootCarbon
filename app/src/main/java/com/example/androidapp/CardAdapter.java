@@ -3,6 +3,7 @@ package com.example.androidapp;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,18 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
     public void onBindViewHolder(@NonNull CardHolder holder, int position) {
         CarbonEmissions current = ce.get(position);
         try {
+            String image = current.getType();
+            switch(image){
+                case "flights":
+                    holder.imageView.setImageResource(R.drawable.ic_plane);
+                    break;
+                case "electricity":
+                    holder.imageView.setImageResource(R.drawable.ic_lightbulb);
+                    break;
+                case "water":
+                    holder.imageView.setImageResource(R.drawable.ic_water);
+                    break;
+            }
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             Date dateDate = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy").parse(current.getDate());
             String date = formatter.format(dateDate);
@@ -73,6 +86,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
         private TextView valueTextView;
         private TextView dateTextView;
         private TextView descriptionTextView;
+        private ImageView imageView;
 
 
         public CardHolder(View itemView){
@@ -80,7 +94,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
             valueTextView = (TextView) itemView.findViewById(R.id.values_textview);
             dateTextView = (TextView)  itemView.findViewById(R.id.date_textView);
             descriptionTextView = (TextView) itemView.findViewById(R.id.description_textView);
-
+            imageView = itemView.findViewById(R.id.cardImage);
 
 
 

@@ -131,8 +131,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/flightsView"
-        android:layout_width="377dp"
-        android:layout_height="359dp"
+        android:layout_width="match_parent"
+        android:layout_height="337dp"
         android:layout_marginBottom="65dp"
         app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintEnd_toEndOf="parent"
