@@ -42,14 +42,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
             System.out.println(holder.dateTextView.getText());
             System.out.println(current.getSum());
             holder.dateTextView.setText(date);
-            holder.valueTextView.setText(current.getSum() + "CO2 kg/year");
-            holder.descriptionTextView.setText(current.getDescription());
 
 
         }catch(Exception e) {
             e.printStackTrace();
 
         }
+
+        holder.valueTextView.setText(current.getSum() + "CO2 kg/year");
+        holder.descriptionTextView.setText(current.getDescription());
+
 
     }
 

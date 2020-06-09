@@ -105,6 +105,76 @@ public class ExampleInstrumentedTest {
     }
 
 
+
+    @Test
+    public void testElectricityCalculation() throws InterruptedException {
+
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open());
+
+        onView(withId(R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(R.id.nav_electricity));
+
+        //Avoids hierarchy errors
+        sleep(1000);
+
+
+        String country = "Denmark";
+
+        String resultExpected = "35.6";
+        onView(withId(R.id.countriesSpinner)).perform(click());
+        sleep(1000);
+        onData(allOf(is(instanceOf(String.class)), is(country))).perform(click());
+        sleep(1000);
+        onView(withId(R.id.countriesSpinner)).check(matches(withSpinnerText(containsString(country))));
+
+
+        onView(withId(R.id.editText)).perform(click()).perform(typeText("100"));
+        sleep(1000);
+        onView(withId(R.id.button3)).perform(click());
+
+        sleep(1000);
+        onView(withId(R.id.text_electricity)).check(matches(withText(containsString(resultExpected))));
+
+
+    }
+
+    @Test
+    public void testWaterCalculation() throws InterruptedException {
+
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open());
+
+        onView(withId(R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(R.id.nav_water_usage));
+
+        //Avoids hierarchy errors
+        sleep(1000);
+
+
+        String country = "shower";
+
+        String resultExpected = "26.574911";
+        onView(withId(R.id.spinner)).perform(click());
+        sleep(1000);
+        onData(allOf(is(instanceOf(String.class)), is(country))).perform(click());
+        sleep(1000);
+        onView(withId(R.id.spinner)).check(matches(withSpinnerText(containsString(country))));
+
+
+        onView(withId(R.id.waterText)).perform(click()).perform(typeText("1"));
+        sleep(1000);
+        onView(withId(R.id.button)).perform(click());
+
+        sleep(1000);
+        onView(withId(R.id.text_send)).check(matches(withText(containsString(resultExpected))));
+
+
+    }
+
+
     @Test
     public void useAppContext() {
         // Context of the app under test.

@@ -18,7 +18,6 @@ public class HomeViewModel extends AndroidViewModel {
     public final static float CARBON_EMISSION_AVERAGE = 5100;
     private LiveData<Float> mText;
     private LiveData<Float> sum;
-    RequestManager rm = RequestManager.getInstance();
     CarbonRepository cr;
 
 

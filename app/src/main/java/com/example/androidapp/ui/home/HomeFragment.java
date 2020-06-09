@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -39,15 +40,20 @@ public class HomeFragment extends Fragment {
         homeViewModel.getText().observe(this, new Observer<Float>() {
             @Override
             public void onChanged(@Nullable Float s) {
-                if(s> homeViewModel.CARBON_EMISSION_GOAL){
-                    bad.setVisibility(View.VISIBLE);
-                    textView.setTextColor(Color.RED);
+                try {
+                    if (s > homeViewModel.CARBON_EMISSION_GOAL) {
+                        bad.setVisibility(View.VISIBLE);
+                        textView.setTextColor(Color.RED);
 
-                }else{
-                    good.setVisibility(View.VISIBLE);
-                    textView.setTextColor(Color.GREEN);
+                    } else {
+                        good.setVisibility(View.VISIBLE);
+                        textView.setTextColor(Color.GREEN);
+                    }
+                    textView.setText("My CO2 footprint: " + s + " Kg CO2/year");
+                }catch(Exception e) {
+                    textView.setText("My CO2 footprint: 0 Kg CO2/year");
+                    Toast.makeText(root.getContext(),"No values yet",Toast.LENGTH_SHORT);
                 }
-                textView.setText("My CO2 footprint: "+ s+""+" Kg CO2/year");
             }
         });
         return root;
