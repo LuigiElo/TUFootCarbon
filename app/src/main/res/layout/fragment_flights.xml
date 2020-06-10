@@ -5,6 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/buttonFlights"
+        style="@android:style/Widget.Material.Button.Colored"
+        android:layout_width="103dp"
+        android:layout_height="66dp"
+        android:text="Add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.913"
+        android:stateListAnimator="@null"/>
+
     <TextView
         android:id="@+id/text_slideshow"
         android:layout_width="match_parent"
@@ -18,17 +31,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.977" />
 
-    <Button
-        android:id="@+id/buttonFlights"
-        style="@android:style/Widget.Material.Button.Colored"
-        android:layout_width="103dp"
-        android:layout_height="66dp"
-        android:text="Add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.913" />
+
 
     <TextView
         android:id="@+id/textView"
@@ -140,4 +143,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.914"
         tools:listitem="@layout/card_item" />
+
+    <ImageView
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A8C9C9C9"
+        android:clickable="true"
+        android:hapticFeedbackEnabled="false"
+        android:paddingStart="130dp"
+        android:paddingTop="100dp"
+        android:paddingEnd="100dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/loading"
+        tools:visibility="invisible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

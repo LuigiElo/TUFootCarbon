@@ -1,12 +1,16 @@
 package com.example.androidapp.ui.water;
 
+import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +49,10 @@ public class WaterUsageFragment extends Fragment{
         final Spinner spinner = root.findViewById(R.id.spinner);
         final Button button = root.findViewById(R.id.button);
 
+        final ImageView loading = root.findViewById(R.id.loading);
+        final AnimationDrawable animation = (AnimationDrawable) loading.getDrawable();
+
+        final InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
@@ -57,6 +65,9 @@ public class WaterUsageFragment extends Fragment{
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mgr.hideSoftInputFromWindow(waterText.getWindowToken(), 0);
+                loading.setVisibility(View.VISIBLE);
+                animation.start();
                 try{
                     int times = Integer.parseInt(waterText.getText().toString());
                     waterUsageViewModel.getWaterUsage(spinner.getSelectedItem().toString(),times);
@@ -66,6 +77,8 @@ public class WaterUsageFragment extends Fragment{
                 catch(Exception e){
                     e.printStackTrace();
                     Toast.makeText(root.getContext(),"Input values",Toast.LENGTH_SHORT).show();
+                    animation.stop();
+                    loading.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -82,6 +95,8 @@ public class WaterUsageFragment extends Fragment{
                     e.printStackTrace();
                     Toast.makeText(root.getContext(),"error ocurred",Toast.LENGTH_SHORT).show();
                 }
+                animation.stop();
+                loading.setVisibility(View.INVISIBLE);
             }
         });
 

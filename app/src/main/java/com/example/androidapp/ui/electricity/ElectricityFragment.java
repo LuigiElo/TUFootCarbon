@@ -1,12 +1,16 @@
 package com.example.androidapp.ui.electricity;
 
+import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,11 +44,16 @@ public class ElectricityFragment extends Fragment {
                 ViewModelProviders.of(this).get(ElectricityViewModel.class);
         View root = inflater.inflate(R.layout.fragment_electricity, container, false);
 
+        final InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
         final TextView textViewElectricity = root.findViewById(R.id.text_electricity);
         final Spinner countriesSpinner = root.findViewById(R.id.countriesSpinner);
         final Button button3 = root.findViewById(R.id.button3);
         final EditText editText = root.findViewById(R.id.editText);
+
+
+        final ImageView loading = root.findViewById(R.id.loading);
+        final AnimationDrawable animation = (AnimationDrawable) loading.getDrawable();
 
         //RecyclerView Setup
         final RecyclerView recyclerView = root.findViewById(R.id.electricityValuesView);
@@ -65,6 +74,8 @@ public class ElectricityFragment extends Fragment {
                     e.printStackTrace();
                     Toast.makeText(root.getContext(),"error ocurred",Toast.LENGTH_SHORT).show();
                 }
+                animation.stop();
+                loading.setVisibility(View.INVISIBLE);
             }
 
         });
@@ -96,6 +107,10 @@ public class ElectricityFragment extends Fragment {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                mgr.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+                loading.setVisibility(View.VISIBLE);
+                animation.start();
                 try{
                     int amount = Integer.parseInt(editText.getText().toString());
                     electricityViewModel.getElectricityCalculation(countriesSpinner.getSelectedItem().toString(),amount);
@@ -105,6 +120,8 @@ public class ElectricityFragment extends Fragment {
                 catch(Exception e){
                     e.printStackTrace();
                     textViewElectricity.setText("Input all the values");
+                    animation.stop();
+                    loading.setVisibility(View.INVISIBLE);
                 }
             }
         });

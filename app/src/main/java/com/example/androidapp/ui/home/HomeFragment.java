@@ -35,19 +35,19 @@ public class HomeFragment extends Fragment {
         average.setText("Global Average: " + homeViewModel.CARBON_EMISSION_AVERAGE + " Kg CO2/year");
 
         final ImageView good =root.findViewById(R.id.imageView2);
-        final ImageView bad =root.findViewById(R.id.imageView3);
+
 
         homeViewModel.getText().observe(this, new Observer<Float>() {
             @Override
             public void onChanged(@Nullable Float s) {
                 try {
                     if (s > homeViewModel.CARBON_EMISSION_GOAL) {
-                        bad.setVisibility(View.VISIBLE);
-                        textView.setTextColor(Color.RED);
+                        good.setImageResource(R.drawable.ic_global_warming);
+                        textView.setTextColor(Color.parseColor("#5F021F"));
 
                     } else {
-                        good.setVisibility(View.VISIBLE);
-                        textView.setTextColor(Color.GREEN);
+                        good.setImageResource(R.drawable.ic_love);
+                        textView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
                     }
                     textView.setText("My CO2 footprint: " + s + " Kg CO2/year");
                 }catch(Exception e) {
