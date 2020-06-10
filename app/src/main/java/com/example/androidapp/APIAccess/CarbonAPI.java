@@ -32,7 +32,7 @@ public interface CarbonAPI {
     @GET("categories/Usage/calculation")
     Call<CalculationResponse> getWaterUsageCalculation(@Header ("Authorization")String auth ,
                                                        @Query("type") String type,
-                                                       @Query("values.usesPerDay") int uses);
+                                                       @Query("values.usesPerDay") double uses);
 
     /**
      * Consumes the CarbonKit API requesting a list of the different water usage types
@@ -71,7 +71,7 @@ public interface CarbonAPI {
     @GET("categories/Electricity/calculation")
     Call<CalculationResponse> getElectricityCalculation(@Header ("Authorization")String auth ,
                                                         @Query("country") String country,
-                                                        @Query("values.energyConsumption") int amount);
+                                                        @Query("values.energyConsumption") double amount);
 
 
     /**

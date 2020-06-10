@@ -69,10 +69,8 @@ public class WaterUsageFragment extends Fragment{
                 loading.setVisibility(View.VISIBLE);
                 animation.start();
                 try{
-                    int times = Integer.parseInt(waterText.getText().toString());
-                    waterUsageViewModel.getWaterUsage(spinner.getSelectedItem().toString(),times);
+                    waterUsageViewModel.getWaterUsage(spinner.getSelectedItem().toString(),waterText.getText().toString());
                     waterUsageViewModel.getText();
-
                 }
                 catch(Exception e){
                     e.printStackTrace();

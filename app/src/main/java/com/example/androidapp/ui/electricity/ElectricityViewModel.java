@@ -30,8 +30,9 @@ public class ElectricityViewModel extends AndroidViewModel {
         rm.getCountriesForElectricityCalculation();
     }
 
-    public void getElectricityCalculation(String country,int amount){
-        rm.getElectricityCalculation(country,amount);
+    public void getElectricityCalculation(String country,String amount){
+        double amountParsed = Double.parseDouble(amount);
+        rm.getElectricityCalculation(country,amountParsed);
     }
 
     public LiveData<String> getTextElectricity() {

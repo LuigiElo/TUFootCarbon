@@ -45,7 +45,7 @@ public class RequestManager {
         }
         return instance;
     }
-    public MutableLiveData<String> getWaterUsage(String type, int times) {
+    public MutableLiveData<String> getWaterUsage(String type, double times) {
 
         Call<CalculationResponse> call = carbonAPI.getWaterUsageCalculation(user,type,times);
         call.enqueue(new Callback<CalculationResponse>() {
@@ -64,7 +64,7 @@ public class RequestManager {
         return output;
     }
 
-    public MutableLiveData<String> getElectricityCalculation(String country, int amount) {
+    public MutableLiveData<String> getElectricityCalculation(String country, double amount) {
 
         Call<CalculationResponse> call = carbonAPI.getElectricityCalculation(user,country,amount);
         call.enqueue(new Callback<CalculationResponse>() {

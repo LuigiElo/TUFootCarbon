@@ -31,8 +31,9 @@ public class WaterUsageViewModel extends AndroidViewModel {
         rm.getWaterUsageTypes();
     }
 
-    public void getWaterUsage(String type,int times){
-        rm.getWaterUsage(type,times);
+    public void getWaterUsage(String type,String times){
+        double timesParsed = Double.parseDouble(times);
+        rm.getWaterUsage(type,timesParsed);
     }
 
 

@@ -82,20 +82,26 @@ public class FlightsFragment extends Fragment {
                     ArrayAdapter<String> spinnerDepartureAdapter = new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_spinner_item, strings);
                     spinnerDepartureAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     departureSpinner.setAdapter(spinnerDepartureAdapter);
+                    animation.stop();
+                    loading.setVisibility(View.INVISIBLE);
                 }catch(Exception e ){
                     e.printStackTrace();
                 }
-                animation.stop();
-                loading.setVisibility(View.INVISIBLE);
+
             }
         });
 
         flightsViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                if(!departureSpinner.getSelectedItem().toString().equals(arrivalSpinner.getSelectedItem().toString())) {
-                    textView.setText(s);
-                    flightsViewModel.insert(new CarbonEmissions(FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Float.parseFloat(s), Calendar.getInstance().getTime().toString(),flightsViewModel.EMISSION_TYPE_FLIGHTS , departureSpinner.getSelectedItem().toString() + " - " + arrivalSpinner.getSelectedItem().toString()));
+                try {
+                    if(!departureSpinner.getSelectedItem().toString().equals(arrivalSpinner.getSelectedItem().toString())) {
+                        textView.setText(s);
+                        flightsViewModel.insert(new CarbonEmissions(FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Float.parseFloat(s), Calendar.getInstance().getTime().toString(),flightsViewModel.EMISSION_TYPE_FLIGHTS , departureSpinner.getSelectedItem().toString() + " - " + arrivalSpinner.getSelectedItem().toString()));
+                    }
+                }
+                catch(Exception e){
+                    e.printStackTrace();
                 }
                 journeys.getText().clear();
                 animation.stop();

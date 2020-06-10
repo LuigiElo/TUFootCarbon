@@ -44,6 +44,7 @@ public class ElectricityFragment extends Fragment {
                 ViewModelProviders.of(this).get(ElectricityViewModel.class);
         View root = inflater.inflate(R.layout.fragment_electricity, container, false);
 
+        //Used to closed the keyboard after input
         final InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
         final TextView textViewElectricity = root.findViewById(R.id.text_electricity);
@@ -52,6 +53,7 @@ public class ElectricityFragment extends Fragment {
         final EditText editText = root.findViewById(R.id.editText);
 
 
+        //Animation
         final ImageView loading = root.findViewById(R.id.loading);
         final AnimationDrawable animation = (AnimationDrawable) loading.getDrawable();
 
@@ -112,8 +114,8 @@ public class ElectricityFragment extends Fragment {
                 loading.setVisibility(View.VISIBLE);
                 animation.start();
                 try{
-                    int amount = Integer.parseInt(editText.getText().toString());
-                    electricityViewModel.getElectricityCalculation(countriesSpinner.getSelectedItem().toString(),amount);
+
+                    electricityViewModel.getElectricityCalculation(countriesSpinner.getSelectedItem().toString(),editText.getText().toString());
                     electricityViewModel.getTextElectricity();
 
                 }
