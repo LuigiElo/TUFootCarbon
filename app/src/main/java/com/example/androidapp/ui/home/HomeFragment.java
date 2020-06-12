@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,8 @@ public class HomeFragment extends Fragment {
         average.setText("Global Average: " + homeViewModel.CARBON_EMISSION_AVERAGE + " Kg CO2/year");
 
         final ImageView good =root.findViewById(R.id.imageView2);
+
+        good.setAnimation(AnimationUtils.loadAnimation(root.getContext(),R.anim.fade_transition));
 
 
         homeViewModel.getText().observe(this, new Observer<Float>() {

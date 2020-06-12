@@ -45,6 +45,22 @@ public class RequestManager {
         }
         return instance;
     }
+
+
+
+    /**
+     * Consumes the CarbonKit API requesting a calculation of the water usage
+     *
+     * @param  type
+     *         type of water usage
+     *
+     * @param  times
+     *         amount of uses of a type of water usage
+     *
+     * @return String with the value ready to be passed to the ViewModel
+     *
+     * @see {@link com.example.androidapp.APIAccess.CarbonAPI#getWaterUsageCalculation(String, String, double)}
+     */
     public MutableLiveData<String> getWaterUsage(String type, double times) {
 
         Call<CalculationResponse> call = carbonAPI.getWaterUsageCalculation(user,type,times);
@@ -64,6 +80,20 @@ public class RequestManager {
         return output;
     }
 
+
+    /**
+     * Consumes the CarbonKit API requesting a calculation of the electricity
+     *
+     * @param  country
+     *         country where the user lives
+     *
+     * @param  amount
+     *         amount of  electricity used in kwh
+     *
+     * @return String with the value ready to be passed to the ViewModel
+     *
+     * @see {@link com.example.androidapp.APIAccess.CarbonAPI#getElectricityCalculation(String, String, double)}
+     */
     public MutableLiveData<String> getElectricityCalculation(String country, double amount) {
 
         Call<CalculationResponse> call = carbonAPI.getElectricityCalculation(user,country,amount);
@@ -83,7 +113,23 @@ public class RequestManager {
         return output;
     }
 
-    public MutableLiveData<List<String>> getCountriesForElectricityCalculation(){
+
+
+
+    /**
+     *    Consumes the CarbonKit API requesting a list of countries to be used in the calculation.
+     *
+     *    This method uses recursion to get all the elements since the API
+     * can only handle a request of 100 elements at a time and there are about 150 countries in this list.
+     *
+     *    When the max number of results has been reached,
+     * the response item contains "ResultsTruncated" with the value false,
+     * which stops the recursion, thus the list is complete.
+     *
+     * @return List with the countries ready to be displayed in a spinner
+     *
+     * @see {@link com.example.androidapp.APIAccess.CarbonAPI#getElectricityCountriesForCalculation(String, int, int)}
+     */    public MutableLiveData<List<String>> getCountriesForElectricityCalculation(){
         Call<ItemsResponse> call = carbonAPI.getElectricityCountriesForCalculation(user,resultStart,RESULT_LIMIT);
         //this part is skipped entirely when I debug
         call.enqueue(new Callback<ItemsResponse>() {
@@ -127,6 +173,21 @@ public class RequestManager {
         return output;
     }
 
+
+    /**
+     *    Consumes the CarbonKit API requesting a list of airports
+     *
+     *    This method uses recursion to get all the elements since the API
+     * can only handle a request of 100 elements at a time and there are about 500 airports in this list.
+     *
+     *    When the max number of results has been reached,
+     * the response item contains "ResultsTruncated" with the value false,
+     * which stops the recursion, thus the list is complete.
+     *
+     * @return List with the airports ready to be displayed in a spinner
+     *
+     * @see {@link com.example.androidapp.APIAccess.CarbonAPI#getAirportsByCode(String, int, int)}
+     */
     public MutableLiveData<List<String>> getAirportByCountry(){
         Call<ItemsResponse> call = carbonAPI.getAirportsByCode(user,resultStart,RESULT_LIMIT);
         call.enqueue(new Callback<ItemsResponse>() {
@@ -162,6 +223,29 @@ public class RequestManager {
         return itemsLiveFlights;
     }
 
+
+    /**
+     * Consumes the CarbonKit API requesting the calculation for a given flight
+     *
+     * @param  iataCode1
+     *         Airport of departure
+     *
+     * @param  iataCode2
+     *         Airport of arrival
+     *
+     * @param  isReturn
+     *         Is the flight a round trip
+     *
+     * @param  passengerClass
+     *         Passenger class i.e. "economy"
+     *
+     * @param  journeys
+     *         number of times this flight was performed
+     *
+     * @return String with the value ready to be passed to the ViewModel
+     *
+     * @see {@link com.example.androidapp.APIAccess.CarbonAPI#getFlightCalculation(String, String, String, boolean, String, int)}
+     */
     public MutableLiveData<String> getFlightCalculation(String iataCode1, String iataCode2,boolean isReturn,String passengerClass,int journeys) {
 
         Call<CalculationResponse> call = carbonAPI.getFlightCalculation(user,iataCode1,iataCode2,isReturn,passengerClass,journeys);
@@ -181,6 +265,20 @@ public class RequestManager {
         return output;
     }
 
+    /**
+     *    Consumes the CarbonKit API requesting a list of airports
+     *
+     *    This method uses recursion to get all the elements since the API
+     * can only handle a request of 100 elements at a time and there are about 500 airports in this list.
+     *
+     *    When the max number of results has been reached,
+     * the response item contains "ResultsTruncated" with the value false,
+     * which stops the recursion, thus the list is complete.
+     *
+     * @return List with the types of water to displayed
+     *
+     * @see {@link com.example.androidapp.APIAccess.CarbonAPI#getWaterUsageTypes(String)}
+     */
     public MutableLiveData<List<String>> getWaterUsageTypes(){
         Call<ItemsResponse> call = carbonAPI.getWaterUsageTypes(user);
         call.enqueue(new Callback<ItemsResponse>() {

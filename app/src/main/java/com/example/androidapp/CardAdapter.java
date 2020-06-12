@@ -1,9 +1,12 @@
 package com.example.androidapp;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,14 +23,18 @@ import java.util.List;
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
 
     private List<CarbonEmissions> ce = new ArrayList<>();
+    private Context context;
+
 
     @NonNull
     @Override
     public CardHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_item,parent,false);
 
+        context = parent.getContext();
 
 
         return new CardHolder(itemView);
@@ -36,6 +43,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
     @Override
     public void onBindViewHolder(@NonNull CardHolder holder, int position) {
         CarbonEmissions current = ce.get(position);
+
+        //animation for the image
+        holder.imageView.setAnimation(AnimationUtils.loadAnimation(context,R.anim.fade_transition));
+
+        holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.fade_scale));
+
         try {
             String image = current.getType();
             switch(image){
@@ -87,10 +100,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
         private TextView dateTextView;
         private TextView descriptionTextView;
         private ImageView imageView;
+        private RelativeLayout container;
 
 
         public CardHolder(View itemView){
             super(itemView);
+            container = itemView.findViewById(R.id.relativeLayout);
             valueTextView = (TextView) itemView.findViewById(R.id.values_textview);
             dateTextView = (TextView)  itemView.findViewById(R.id.date_textView);
             descriptionTextView = (TextView) itemView.findViewById(R.id.description_textView);

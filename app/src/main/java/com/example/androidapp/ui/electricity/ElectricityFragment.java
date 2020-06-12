@@ -65,6 +65,7 @@ public class ElectricityFragment extends Fragment {
         recyclerView.setAdapter(cardAdapter);
 
 
+
         electricityViewModel.getTextElectricity().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -127,6 +128,7 @@ public class ElectricityFragment extends Fragment {
                 }
             }
         });
+
 
 
 

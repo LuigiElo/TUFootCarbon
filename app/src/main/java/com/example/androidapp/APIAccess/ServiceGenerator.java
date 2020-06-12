@@ -42,7 +42,6 @@ public class ServiceGenerator {
     }
 
 
-
     public static String getAuthHeader(String user,String password){
         String base = user + ":" + password;
         String auth = "Basic " + Base64.encodeToString(base.getBytes(),Base64.NO_WRAP);
