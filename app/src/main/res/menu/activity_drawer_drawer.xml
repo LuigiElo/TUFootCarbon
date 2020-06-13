@@ -14,10 +14,6 @@
         android:icon="@drawable/ic_menu_home"
         android:title="Home Utilities">
         <menu>
-            <item
-                android:id="@+id/nav_flights"
-                android:icon="@drawable/ic_menu_flights"
-                android:title="@string/menu_flights" />
 
             <item
                 android:id="@+id/nav_water_usage"
@@ -27,6 +23,18 @@
                 android:id="@+id/nav_electricity"
                 android:icon="@drawable/ic_menu_electricity"
                 android:title="@string/menu_electricity" />
+
+        </menu>
+    </item>
+    <item
+        android:icon="@drawable/ic_info"
+        android:title="Transports">
+        <menu>
+
+            <item
+                android:id="@+id/nav_flights"
+                android:icon="@drawable/ic_menu_flights"
+                android:title="@string/menu_flights" />
             <item
                 android:id="@+id/nav_tools"
                 android:icon="@drawable/ic_menu_manage"
@@ -34,13 +42,13 @@
         </menu>
     </item>
     <item
-        android:icon="@drawable/ic_menu_share"
-        android:title="Communicate">
+        android:icon="@drawable/ic_info"
+        android:title="About us">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_share" />
+                android:id="@+id/nav_about_us"
+                android:icon="@drawable/ic_info"
+                android:title="@string/menu_about_us" />
         </menu>
     </item>
 

@@ -46,6 +46,7 @@ public class FlightsFragment extends Fragment {
         final Button button = root.findViewById(R.id.buttonFlights);
         final EditText journeys = root.findViewById(R.id.journeysText);
         final Switch isReturnSwitch = root.findViewById(R.id.isReturnSwitch);
+
         final ImageView loading = root.findViewById(R.id.loading);
         final AnimationDrawable animation = (AnimationDrawable) loading.getDrawable();
 
@@ -63,12 +64,14 @@ public class FlightsFragment extends Fragment {
         classSpinner.setAdapter(spinnerArrayAdapter);
 
         //RecyclerView Setup
-        final RecyclerView recyclerView = root.findViewById(R.id.flightsView);
+        final RecyclerView recyclerView = root.findViewById(R.id.flightsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         recyclerView.setHasFixedSize(true);
         final CardAdapter cardAdapter = new CardAdapter();
         recyclerView.setAdapter(cardAdapter);
 
+
+        //observer gets data from
         flightsViewModel.getSpinnerData().observe(this, new Observer<List<String>>() {
             @Override
             public void onChanged(@Nullable  List<String> strings) {
@@ -97,7 +100,7 @@ public class FlightsFragment extends Fragment {
                 try {
                     if(!departureSpinner.getSelectedItem().toString().equals(arrivalSpinner.getSelectedItem().toString())) {
                         textView.setText(s);
-                        flightsViewModel.insert(new CarbonEmissions(FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Float.parseFloat(s), Calendar.getInstance().getTime().toString(),flightsViewModel.EMISSION_TYPE_FLIGHTS , departureSpinner.getSelectedItem().toString() + " - " + arrivalSpinner.getSelectedItem().toString()));
+                        flightsViewModel.insert(new CarbonEmissions(FirebaseAuth.getInstance().getCurrentUser().getEmail(), Float.parseFloat(s), Calendar.getInstance().getTime(),flightsViewModel.EMISSION_TYPE_FLIGHTS , departureSpinner.getSelectedItem().toString() + " - " + arrivalSpinner.getSelectedItem().toString()));
                     }
                 }
                 catch(Exception e){

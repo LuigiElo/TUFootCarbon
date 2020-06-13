@@ -23,12 +23,12 @@
         android:id="@+id/valuesView"
         android:layout_width="match_parent"
         android:layout_height="353dp"
-        android:layout_marginBottom="65dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.914"
+        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/card_item" />
 
     <EditText
@@ -36,7 +36,6 @@
         style="@style/Widget.AppCompat.EditText"
         android:layout_width="311dp"
         android:layout_height="46dp"
-        android:contentDescription="hhh"
         android:ems="10"
         android:hint="@string/water_hint"
         android:inputType="numberDecimal"
@@ -45,17 +44,18 @@
         app:layout_constraintHorizontal_bias="0.84"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.735" />
+        app:layout_constraintVertical_bias="0.735"
+        android:autofillHints="" />
 
     <TextView
         android:id="@+id/textViewType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Type"
+        android:text="@string/water_type"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintEnd_toStartOf="@+id/spinner"
+        app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.61" />
@@ -78,21 +78,23 @@
         style="@style/AlertDialog.AppCompat.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Amount"
+        android:text="@string/water_amount"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintEnd_toStartOf="@+id/waterText"
+        app:layout_constraintHorizontal_bias="0.382"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.723" />
+        app:layout_constraintVertical_bias="0.721" />
 
     <Button
         android:id="@+id/button"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="122dp"
         android:layout_height="64dp"
-        android:text="Add"
+        android:background="@drawable/cicular_button"
+        android:stateListAnimator="@null"
+        android:text="@string/calculate_button"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -106,14 +108,14 @@
         style="@android:style/Widget.DeviceDefault.Light.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableRight="@android:drawable/ic_menu_delete"
-        android:text="Swipe to Delete"
+        android:drawableEnd="@android:drawable/ic_menu_delete"
+        android:text="@string/swipe_delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.536" />
+        app:layout_constraintTop_toBottomOf="@+id/valuesView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/loading"
@@ -121,6 +123,7 @@
         android:layout_height="match_parent"
         android:background="#A8C9C9C9"
         android:clickable="true"
+        android:focusable="true"
         android:hapticFeedbackEnabled="false"
         android:paddingStart="130dp"
         android:paddingTop="100dp"
@@ -128,8 +131,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/loading"
         tools:visibility="invisible" />
 

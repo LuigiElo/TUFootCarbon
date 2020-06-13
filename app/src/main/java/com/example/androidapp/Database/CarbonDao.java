@@ -8,6 +8,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -38,5 +39,9 @@ public interface CarbonDao {
 
     @Query("SELECT * FROM carbon_emissions WHERE type LIKE :type ORDER BY id DESC")
     LiveData<List<CarbonEmissions>> getAllEmissionsByType(String type);
+
+
+    @Query("SELECT * FROM carbon_emissions WHERE date BETWEEN :from AND :to")
+    LiveData<List<CarbonEmissions>> getMonthlyEmissions(Date from, Date to);
 
 }

@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
+
 
 @Entity(tableName = "carbon_emissions")
 public class CarbonEmissions {
@@ -23,9 +25,9 @@ public class CarbonEmissions {
 
     //having it type date was creating some problems
     @ColumnInfo(name = "date")
-    private String date;
+    private Date date;
 
-    public CarbonEmissions(String user, float sum, String date, String type, String description) {
+    public CarbonEmissions(String user, float sum, Date date, String type, String description) {
         this.user = user;
         this.sum = sum;
         this.date = date;
@@ -58,11 +60,11 @@ public class CarbonEmissions {
         this.id = id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

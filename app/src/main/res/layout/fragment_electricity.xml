@@ -64,16 +64,30 @@
     <Button
         android:id="@+id/button3"
         style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="129dp"
+        android:layout_height="64dp"
+        android:background="@drawable/cicular_button"
+        android:stateListAnimator="@null"
+        android:text="@string/calculate_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.794"
+        tools:text="@string/calculate_button" />
+
+    <TextView
+        android:id="@+id/deleSwipe"
+        style="@android:style/Widget.DeviceDefault.Light.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/calculate_button"
+        android:drawableRight="@android:drawable/ic_menu_delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.775"
-        android:stateListAnimator="@null"/>
+        app:layout_constraintTop_toBottomOf="@+id/electricityValuesView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/loading"
@@ -81,6 +95,7 @@
         android:layout_height="match_parent"
         android:background="#A8C9C9C9"
         android:clickable="true"
+        android:focusable="true"
         android:hapticFeedbackEnabled="false"
         android:paddingStart="130dp"
         android:paddingTop="100dp"

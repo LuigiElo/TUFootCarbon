@@ -30,10 +30,10 @@
         tools:layout="@layout/fragment_tools" />
 
     <fragment
-        android:id="@+id/nav_share"
-        android:name="com.example.androidapp.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+        android:id="@+id/nav_about_us"
+        android:name="com.example.androidapp.ui.about_us.AboutUsFragment"
+        android:label="@string/menu_about_us"
+        tools:layout="@layout/fragment_about_us" />
 
     <fragment
         android:id="@+id/nav_water_usage"

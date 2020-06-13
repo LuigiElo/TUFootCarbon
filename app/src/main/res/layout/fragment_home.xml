@@ -7,15 +7,57 @@
 
 
     <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="371dp"
-        android:layout_height="523dp"
+        android:layout_width="354dp"
+        android:layout_height="187dp"
         android:background="@drawable/card_frame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
+        app:layout_constraintVertical_bias="0.261">
+
+        <ImageView
+            android:id="@+id/trees"
+            android:layout_width="211dp"
+            android:layout_height="202dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="-31dp"
+            android:layout_marginBottom="-42dp"
+            app:srcCompat="@drawable/ic_tree_anim" />
+
+        <TextView
+            android:id="@+id/tips"
+            android:layout_width="114dp"
+            android:layout_height="174dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="19dp"
+            android:layout_marginBottom="-17dp"
+            android:layout_toStartOf="@+id/trees"
+            android:text="@string/tips"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="360dp"
+        android:layout_height="350dp"
+        android:background="@drawable/card_frame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.259">
 
         <TextView
             android:id="@+id/text_home2"
@@ -24,11 +66,9 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="187dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="269dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="184dp"
+            android:layout_marginEnd="5dp"
             android:textAlignment="center"
             android:textSize="20sp" />
 
@@ -39,11 +79,9 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="9dp"
             android:layout_marginTop="259dp"
             android:layout_marginEnd="7dp"
-            android:layout_marginBottom="197dp"
             android:textAlignment="center"
             android:textSize="20sp" />
 
@@ -54,7 +92,6 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="8dp"
             android:layout_marginTop="114dp"
             android:layout_marginEnd="8dp"

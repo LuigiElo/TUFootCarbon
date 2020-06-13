@@ -21,8 +21,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/valuesView"
-        android:layout_width="431dp"
-        android:layout_height="397dp"
+        android:layout_width="433dp"
+        android:layout_height="262dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -35,30 +35,29 @@
         android:id="@+id/waterText"
         style="@style/Widget.AppCompat.EditText"
         android:layout_width="311dp"
-        android:layout_height="46dp"
-        android:contentDescription="hhh"
+        android:layout_height="52dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/water_hint"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.884"
+        app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.567" />
+        app:layout_constraintVertical_bias="0.729" />
 
     <TextView
         android:id="@+id/textViewType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Type"
+        android:text="@string/water_type"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.587"
+        app:layout_constraintEnd_toStartOf="@+id/spinner"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.201" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -68,51 +67,73 @@
         android:scrollbarStyle="outsideInset"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.747"
+        app:layout_constraintHorizontal_bias="0.896"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.267" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewAmount"
         style="@style/AlertDialog.AppCompat.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Amount"
+        android:text="@string/water_amount"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.604"
+        app:layout_constraintEnd_toStartOf="@+id/waterText"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.484" />
+        app:layout_constraintVertical_bias="0.668" />
 
     <Button
         android:id="@+id/button"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="122dp"
         android:layout_height="64dp"
-        android:text="Add"
+        android:background="@drawable/cicular_button"
+        android:stateListAnimator="@null"
+        android:text="@string/calculate_button"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintHorizontal_bias="0.949"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.755" />
+        app:layout_constraintVertical_bias="0.899" />
 
     <TextView
         android:id="@+id/deleSwipe"
         style="@android:style/Widget.DeviceDefault.Light.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableRight="@android:drawable/ic_menu_delete"
-        android:text="Swipe to Delete"
+        android:drawableEnd="@android:drawable/ic_menu_delete"
+        android:text="@string/swipe_delete"
+        app:layout_constraintBottom_toTopOf="@+id/loading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/valuesView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A8C9C9C9"
+        android:clickable="true"
+        android:focusable="true"
+        android:hapticFeedbackEnabled="false"
+        android:paddingStart="130dp"
+        android:paddingTop="100dp"
+        android:paddingEnd="100dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.587"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.017" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/loading"
+        tools:visibility="invisible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -63,7 +63,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
                     break;
             }
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            Date dateDate = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy").parse(current.getDate());
+            Date dateDate = current.getDate();
             String date = formatter.format(dateDate);
             System.out.println(holder.dateTextView.getText());
             System.out.println(current.getSum());

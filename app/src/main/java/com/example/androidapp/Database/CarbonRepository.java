@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class CarbonRepository {
@@ -40,6 +42,7 @@ public class CarbonRepository {
         return total;
     }
 
+
     public LiveData<List<CarbonEmissions>> getAllEmissionsByType(String type){
         typeEmissions = carbonDao.getAllEmissionsByType(type);
         return typeEmissions;
@@ -56,6 +59,10 @@ public class CarbonRepository {
     public void deleteAllNotes(){
         new DeleteAllNotesAsync(carbonDao).execute();
     }
+
+
+
+
 
 
     private static class InsertCarbonEmissionAsync extends AsyncTask<CarbonEmissions,Void,Void> {

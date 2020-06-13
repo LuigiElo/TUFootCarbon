@@ -1,6 +1,7 @@
 package com.example.androidapp.ui.home;
 
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,8 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.androidapp.APIAccess.CarbonAPI;
 import com.example.androidapp.APIAccess.ServiceGenerator;
 import com.example.androidapp.R;
+
+import static java.lang.Thread.sleep;
 
 public class HomeFragment extends Fragment {
 
@@ -40,6 +43,10 @@ public class HomeFragment extends Fragment {
         good.setAnimation(AnimationUtils.loadAnimation(root.getContext(),R.anim.fade_transition));
 
 
+        final ImageView trees = root.findViewById(R.id.trees);
+        final AnimationDrawable animation = (AnimationDrawable) trees.getDrawable();
+        animation.start();
+
         homeViewModel.getText().observe(this, new Observer<Float>() {
             @Override
             public void onChanged(@Nullable Float s) {
@@ -47,6 +54,7 @@ public class HomeFragment extends Fragment {
                     if (s > homeViewModel.CARBON_EMISSION_GOAL) {
                         good.setImageResource(R.drawable.ic_global_warming);
                         textView.setTextColor(Color.parseColor("#5F021F"));
+
 
                     } else {
                         good.setImageResource(R.drawable.ic_love);

@@ -8,15 +8,16 @@
     <Button
         android:id="@+id/buttonFlights"
         style="@android:style/Widget.Material.Button.Colored"
-        android:layout_width="103dp"
+        android:layout_width="126dp"
         android:layout_height="66dp"
-        android:text="Add"
+        android:background="@drawable/cicular_button"
+        android:stateListAnimator="@null"
+        android:text="@string/calculate_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.913"
-        android:stateListAnimator="@null"/>
+        app:layout_constraintVertical_bias="0.913" />
 
     <TextView
         android:id="@+id/text_slideshow"
@@ -32,39 +33,52 @@
         app:layout_constraintVertical_bias="0.977" />
 
 
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Departure"
+        android:text="@string/departure"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintEnd_toStartOf="@+id/departureSpinner"
+        app:layout_constraintHorizontal_bias="0.691"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.528" />
+        app:layout_constraintVertical_bias="0.529" />
 
     <TextView
         android:id="@+id/textViewDestination"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Arrival"
+        android:text="@string/arrival"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintEnd_toStartOf="@+id/arrivalSpinner"
+        app:layout_constraintHorizontal_bias="0.677"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.599" />
+        app:layout_constraintVertical_bias="0.605" />
+
+    <TextView
+        android:id="@+id/deleSwipe"
+        style="@android:style/Widget.DeviceDefault.Light.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableRight="@android:drawable/ic_menu_delete"
+        android:text="@string/swipe_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flightsList"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Class"
+        android:text="@string/passenger_class"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.162"
+        app:layout_constraintEnd_toStartOf="@+id/classSpinner"
+        app:layout_constraintHorizontal_bias="0.694"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.668" />
@@ -74,7 +88,7 @@
         android:layout_width="89dp"
         android:layout_height="53dp"
         android:ems="10"
-        android:hint="Journeys"
+        android:hint="@string/journeys"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,7 +138,7 @@
         android:layout_width="92dp"
         android:layout_height="35dp"
         android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:text="Return"
+        android:text="@string/Return"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.78"
@@ -133,7 +147,7 @@
         app:layout_constraintVertical_bias="0.771" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/flightsView"
+        android:id="@+id/flightsList"
         android:layout_width="match_parent"
         android:layout_height="337dp"
         android:layout_marginBottom="65dp"
@@ -150,6 +164,7 @@
         android:layout_height="match_parent"
         android:background="#A8C9C9C9"
         android:clickable="true"
+        android:focusable="true"
         android:hapticFeedbackEnabled="false"
         android:paddingStart="130dp"
         android:paddingTop="100dp"
@@ -157,8 +172,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/loading"
         tools:visibility="invisible" />
 </androidx.constraintlayout.widget.ConstraintLayout>
