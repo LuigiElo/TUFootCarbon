@@ -32,15 +32,17 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
         final TextView textView = root.findViewById(R.id.text_home);
+
         final TextView goal = root.findViewById(R.id.text_home2);
         goal.setText("Target: " + homeViewModel.CARBON_EMISSION_GOAL + " Kg CO2/year");
+
         final TextView average = root.findViewById(R.id.text_home3);
         average.setText("Global Average: " + homeViewModel.CARBON_EMISSION_AVERAGE + " Kg CO2/year");
 
         final ImageView good =root.findViewById(R.id.imageView2);
-
-        good.setAnimation(AnimationUtils.loadAnimation(root.getContext(),R.anim.fade_transition));
+        good.setAnimation(AnimationUtils.loadAnimation(root.getContext(),R.anim.fade_scale));
 
 
         final ImageView trees = root.findViewById(R.id.trees);
@@ -67,9 +69,11 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+
+
+
+
         return root;
-
-
     }
 
 

@@ -47,7 +47,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
         //animation for the image
         holder.imageView.setAnimation(AnimationUtils.loadAnimation(context,R.anim.fade_transition));
 
-        holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.fade_scale));
+        holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.fade_transition));
 
         try {
             String image = current.getType();

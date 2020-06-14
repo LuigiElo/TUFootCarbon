@@ -29,9 +29,13 @@
     <string name="menu_mobility">Mobility</string>
     <string name="menu_menu_home_utilities">Home Utilities</string>
     <string name="menu_about_us">About us</string>
+    <string name="menu_car">Car</string>
+
+    <string name="car_update">This section is in development. Will be available next update!</string>
 
 
-    <string name="electricity_consumption">Electricity Consumption</string>
+
+    <string name="electricity_consumption">Electricity Consumption kWh</string>
     <string name="calculate_button">Add</string>
     <string name="electricity_hint">Monthly Consumption</string>
 
