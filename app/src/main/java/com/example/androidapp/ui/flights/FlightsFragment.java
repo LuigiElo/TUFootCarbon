@@ -105,6 +105,10 @@ public class FlightsFragment extends Fragment {
                 }
                 catch(Exception e){
                     e.printStackTrace();
+                    if(journeys.getText().equals("")){
+                    }else{
+                        Toast.makeText(root.getContext(),"error ocurred",Toast.LENGTH_SHORT).show();
+                    }
                 }
                 journeys.getText().clear();
                 animation.stop();

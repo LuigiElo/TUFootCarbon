@@ -36,6 +36,8 @@ public class RequestManager {
         itemsLiveFlights = new MutableLiveData<>();
         items= new ArrayList<String>();
         carbonAPI = ServiceGenerator.getCarbonAPI();
+
+        //Its using a specific account,but in the future each user should have its own.
         user =  ServiceGenerator.getAuthHeader("eloluigi","luigi09");
     }
 

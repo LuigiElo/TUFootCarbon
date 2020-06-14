@@ -75,7 +75,10 @@ public class ElectricityFragment extends Fragment {
                     editText.getText().clear();
                 }catch(Exception e){
                     e.printStackTrace();
+                    if(editText.getText().equals("")){
+                    }else{
                     Toast.makeText(root.getContext(),"error ocurred",Toast.LENGTH_SHORT).show();
+                    }
                 }
                 animation.stop();
                 loading.setVisibility(View.INVISIBLE);

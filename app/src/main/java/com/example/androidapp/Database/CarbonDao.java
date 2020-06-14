@@ -32,13 +32,13 @@ public interface CarbonDao {
 
 
     //Does not work
-    @Query("SELECT sum(value) FROM carbon_emissions")
-    LiveData<Float> getEmissionTotal();
+    @Query("SELECT sum(value) FROM carbon_emissions WHERE user LIKE :user")
+    LiveData<Float> getEmissionTotal(String user);
 
 
 
-    @Query("SELECT * FROM carbon_emissions WHERE type LIKE :type ORDER BY id DESC")
-    LiveData<List<CarbonEmissions>> getAllEmissionsByType(String type);
+    @Query("SELECT * FROM carbon_emissions WHERE type LIKE :type AND user LIKE :user ORDER BY id DESC")
+    LiveData<List<CarbonEmissions>> getAllEmissionsByType(String type,String user);
 
 
     @Query("SELECT * FROM carbon_emissions WHERE date BETWEEN :from AND :to")

@@ -6,6 +6,9 @@ import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -38,13 +41,13 @@ public class CarbonRepository {
 
 
     public LiveData<Float> getEmissionTotal(){
-        total = carbonDao.getEmissionTotal();
+        total = carbonDao.getEmissionTotal( FirebaseAuth.getInstance().getCurrentUser().getEmail());
         return total;
     }
 
 
     public LiveData<List<CarbonEmissions>> getAllEmissionsByType(String type){
-        typeEmissions = carbonDao.getAllEmissionsByType(type);
+        typeEmissions = carbonDao.getAllEmissionsByType(type, FirebaseAuth.getInstance().getCurrentUser().getEmail());
         return typeEmissions;
     }
 
